@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int main(void) {
-    for (int x; x < 9999; x++) {
+    for (int x = 0; x < 9999; x++) {
     int a[3]; 
     int b[3]; 
     int ans[3]; 
@@ -19,7 +20,11 @@ int main(void) {
 
     printf("The cross product is: %d %d %d\n", ans[0], ans[1], ans[2]);
     int sum = ans[0] + ans[1] + ans[2];
-    printf("The sum is : %d\n", sum);
+
+    printf("The sum is: %d\n", sum);
+    double area = sqrt(ans[0] * ans[0] + ans[1] * ans[1] + ans[2] * ans[2]);
+    printf("The area is: %lf\n", area);
+
     system("pause");
     }
     return 0;
