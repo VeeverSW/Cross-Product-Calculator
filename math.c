@@ -246,8 +246,9 @@ void cosin_degree_calculator() {
         theta = acos(cos_theta);
     }
     
-    if (theta >= 0 && theta <= 3.1415926);
-    printf("The angle between the vectors in radians is: %lf\n", theta);
-
-
+    if (theta >= 0 && theta <= 3.1415926) {
+        printf("The Output is invalid.");
+    } else {
+        printf("The angle between the vectors in radians is: %lf\n", theta);    
+    }
 }
