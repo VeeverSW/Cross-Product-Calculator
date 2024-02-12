@@ -2,13 +2,19 @@
 #include <math.h>
 
 void length_calculator();
+void single_vector();
+void cosin_degree_calculator();
+
 int main(void) {
     int user_input;
-    printf("Press '1' to calculate the 3d vectors for 2 values\n");
+    printf("Press '1' to calculate the 3d vectors by cross product and calculate the area\n");
     printf("Press '2' to calculate the vector difference & length\n");
+    printf("Press '3' to calculate the vector by points(2d & 3d)\n");
+    printf("Press '4' to calculate the angle θ in radians\n");
     printf("More features in development\n");
     printf("if you want more features, please feedback in the issue\n");
     printf("Github:https://github.com/VeeverSW/Cross-Product-Calculator\n");
+    printf("Please Enter the Mode Number:");
 
     scanf("%d", &user_input);
     while ((getchar()) != '\n');
@@ -45,7 +51,17 @@ int main(void) {
 
     } else if (user_input == 2) {
         length_calculator();
+        printf("Press enter to continue...\n");
+        while (getchar() != '\n'); 
+        getchar(); 
 
+    } else if (user_input == 3) {
+        single_vector();
+        printf("Press enter to continue...\n");
+        while (getchar() != '\n'); 
+        getchar(); 
+    } else if (user_input == 4) {
+        cosin_degree_calculator();
         printf("Press enter to continue...\n");
         while (getchar() != '\n'); 
         getchar(); 
@@ -55,6 +71,7 @@ int main(void) {
 
 }
 
+//Function length_calculator
 void length_calculator() {
     int A[3]; 
     int B[3]; 
@@ -103,6 +120,134 @@ void length_calculator() {
     printf("Vector BC is <%d, %d, %d>\n", vec_BC[0], vec_BC[1], vec_BC[2]);
     printf("Length of vector BC is %f\n", length_BC);
     printf("BC: sqrt(%lf)\n", sqrtnum_BC);
+    return;
 
 }
 
+//Function single_vector
+void single_vector() {
+    int num_point = 0;
+    printf("To calculate a vector, you need to input two points\n");
+    printf("Example: A: 1 2 3; B: 2 3 4\n");
+    printf("Output: vector_AB = 1 1 1\n");
+    printf("At first, how many numbers in each point?(2 or 3)\n");
+    scanf("%d", &num_point);
+
+
+    if (num_point == 2) {
+        int vector_input_A[2];
+        int vector_input_B[2];
+
+        printf("Please input point A: ");
+        scanf("%d %d", &vector_input_A[0], &vector_input_A[1]);
+
+        printf("Please input point B: ");
+        scanf("%d %d", &vector_input_B[0], &vector_input_B[1]);
+
+        int vector_2cal[2];
+        vector_2cal[0] = vector_input_B[0] - vector_input_A[0];
+        vector_2cal[1] = vector_input_B[1] - vector_input_A[1];
+
+
+        printf("Your 2D vector AB is: <%d %d>\n", vector_2cal[0], vector_2cal[1]);
+
+
+    } else if (num_point == 3) {
+        int vector_input_A[3];
+        int vector_input_B[3];
+
+
+        printf("Please input point A: ");
+        scanf("%d %d %d", &vector_input_A[0], &vector_input_A[1], &vector_input_A[2]);
+
+        printf("Please input point B: ");
+        scanf("%d %d %d", &vector_input_B[0], &vector_input_B[1], &vector_input_B[2]);
+
+        int vector_2cal[3];
+        vector_2cal[0] = vector_input_B[0] - vector_input_A[0];
+        vector_2cal[1] = vector_input_B[1] - vector_input_A[1];
+        vector_2cal[2] = vector_input_B[2] - vector_input_A[2];
+
+        printf("Your 3d vector AB is: <%d %d %d>\n", vector_2cal[0], vector_2cal[1], vector_2cal[2]);
+
+    }
+
+}
+
+// Function cosin_degree_calculator
+void cosin_degree_calculator() {
+    int degree_num_point;
+    double dot_sum_product;
+    double length_num_product_A;
+    double length_num_product_B;
+    double cos_theta;
+    double theta;
+    printf("This mode is used for calculate the angle θ between two vectors in radians\n");
+    printf("At first, how many numbers in each point?(2 or 3 or 4)\n");
+    scanf("%d", &degree_num_point);
+
+    
+
+    if (degree_num_point == 2) {
+        double a[2] = {1.0, 2.0};
+        double b[2] = {1.0, 2.0};
+        printf("Please input point A(x1 x2): ");
+        scanf("%lf %lf", &a[0], &a[1]);
+
+        printf("Please input point B(x1 x2): ");
+        scanf("%lf %lf", &b[0], &b[1]);
+        
+        dot_sum_product = a[0] * b[0] + a[1] * b[1];
+        
+        length_num_product_A = sqrt(a[0]*a[0] + a[1]*a[1]);
+        length_num_product_B = sqrt(b[0]*b[0] + b[1]*b[1]);
+
+        cos_theta = dot_sum_product / (length_num_product_A * length_num_product_B);
+
+        theta = acos(cos_theta);
+
+
+    } else if (degree_num_point == 3) {
+        double a[3] = {1.0, 2.0, 3.0};
+        double b[3] = {1.0, 2.0, 3.0};
+
+        printf("Please input point A(x1 x2 x3): ");
+        scanf("%lf %lf %lf", &a[0], &a[1], &a[2]);
+
+        printf("Please input point B(x1 x2 x3): ");
+        scanf("%lf %lf %lf", &b[0], &b[1], &b[2]);
+
+        dot_sum_product = a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+
+        length_num_product_A = sqrt(a[0]*a[0] + a[1]*a[1] + a[2]*a[2]);
+        length_num_product_B = sqrt(b[0]*b[0] + b[1]*b[1] + b[2]*b[2]);
+
+        cos_theta = dot_sum_product / (length_num_product_A * length_num_product_B);
+
+        theta = acos(cos_theta);
+
+    } else if (degree_num_point == 4) {
+        double a[4] = {1.0, 2.0, 3.0, 4.0};
+        double b[4] = {1.0, 2.0, 3.0, 4.0};
+
+        printf("Please input point A(x1 x2 x3 x4): ");
+        scanf("%lf %lf %lf %lf", &a[0], &a[1], &a[2], &a[3]);
+
+        printf("Please input point B(x1 x2 x3 x4): ");
+        scanf("%lf %lf %lf %lf", &b[0], &b[1], &b[2], &b[3]);
+
+        dot_sum_product = a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
+
+        length_num_product_A = sqrt(a[0]*a[0] + a[1]*a[1] + a[2]*a[2] + a[3]*a[3]);
+        length_num_product_B = sqrt(b[0]*b[0] + b[1]*b[1] + b[2]*b[2] + b[3]*b[3]);
+
+        cos_theta = dot_sum_product / (length_num_product_A * length_num_product_B);
+
+        theta = acos(cos_theta);
+    }
+    
+    if (theta >= 0 && theta <= 3.1415926);
+    printf("The angle between the vectors in radians is: %lf\n", theta);
+
+
+}
